@@ -1,6 +1,6 @@
 package com.roronoadiogo.modulo01.model;
 
-public class Contas {
+public class Conta {
 
     private Integer id;
     private Integer agencia;
