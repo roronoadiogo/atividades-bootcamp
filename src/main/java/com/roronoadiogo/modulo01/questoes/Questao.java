@@ -3,8 +3,7 @@ package com.roronoadiogo.modulo01.questoes;
 import com.roronoadiogo.modulo01.model.Conta;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
+import java.util.function.DoubleConsumer;
 
 public class Questao {
 
@@ -51,12 +50,14 @@ public class Questao {
         return contaList.stream().filter(s->s.getAgencia().equals(agencia)).filter(s -> s.getName().contains(nome)).count();
     }
 
-    public List<Conta> clientesMenorSaldoAgencia(Integer agencia) {
+    public String[] clientesMenorSaldoAgencia(Integer agencia) {
 
-        return contaList.stream().filter(s -> s.getAgencia().equals(agencia))
+        return  contaList.stream().filter(s -> s.getAgencia().equals(agencia))
                 .sorted(Comparator.comparing(Conta::getBalance))
                 .limit(3)
-                .collect(Collectors.toList());
+                .map(Conta::getName)
+                .toArray(String[]::new);
+
     }
 
     //refazer
@@ -64,10 +65,10 @@ public class Questao {
 
         var total = 0.0;
 
-        total+= contaList.stream().filter(s -> s.getAgencia().equals(10)).mapToDouble(Conta::getBalance).max().getAsDouble();
-        total+= contaList.stream().filter(s -> s.getAgencia().equals(33)).mapToDouble(Conta::getBalance).max().getAsDouble();
-        total+= contaList.stream().filter(s -> s.getAgencia().equals(47)).mapToDouble(Conta::getBalance).max().getAsDouble();
-        total+= contaList.stream().filter(s -> s.getAgencia().equals(25)).mapToDouble(Conta::getBalance).max().getAsDouble();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(10)).mapToDouble(Conta::getBalance).max().orElseThrow();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(33)).mapToDouble(Conta::getBalance).max().orElseThrow();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(47)).mapToDouble(Conta::getBalance).max().orElseThrow();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(25)).mapToDouble(Conta::getBalance).max().orElseThrow();
 
         return total;
     }

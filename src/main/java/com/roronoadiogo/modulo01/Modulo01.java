@@ -43,22 +43,19 @@ public class Modulo01 {
                         .append("Q5: A agência com o menor saldo é a \n")
                         .append(questoes.agenciaComMenorSaldo()).append("\n")
                         .append("Q6: Considere o cliente com o maior saldo em cada agência (caso haja mais de um cliente com o maior saldo, escolha apenas um). O valor total desses saldos é: \n")
-                        .append("Errada").append("\n")
+                        .append(questoes.totalSaldoClienteAgencias()).append("\n")
                         .append("Q7: O nome do(a) cliente com o maior saldo na agência 10 é: \n")
                         .append(questoes.nomeClienteMaiorSaldoAgencia(10)).append("\n")
                         .append("Q8: O nome do(a) cliente com o menor saldo na agência 47 é: \n")
                         .append(questoes.nomeClienteMenorSaldoAgencia(47)).append("\n")
                         .append("Q9: Você deve mostrar os nomes dos três clientes com menor saldo da agência 47, separados por vírgula e em ordem crescente (do menor para o maior). Qual seria a sua saída do programa? \n")
-                        .append(questoes.clientesMenorSaldoAgencia(47)).append("\n")
+                        .append(Arrays.toString(questoes.clientesMenorSaldoAgencia(47))).append("\n")
                         .append("Q10: Quantos clientes estão na agência 47? \n")
                         .append(questoes.totalClienteAgencia(47)).append("\n")
                         .append("Q11: Quantos clientes que tem Maria no nome estão na agencia 47? \n")
                         .append(questoes.clientesComecamNome("Maria",47)).append("\n");
 
-
-                System.out.println(questoes.totalSaldoClienteAgencias());
-
-                System.out.println(questoes.clientesComecamNome("Maria", 47));
+                System.out.println(builder);
 
             }
 
