@@ -49,13 +49,16 @@ public class Modulo01 {
                         .append("Q8: O nome do(a) cliente com o menor saldo na agência 47 é: \n")
                         .append(questoes.nomeClienteMenorSaldoAgencia(47)).append("\n")
                         .append("Q9: Você deve mostrar os nomes dos três clientes com menor saldo da agência 47, separados por vírgula e em ordem crescente (do menor para o maior). Qual seria a sua saída do programa? \n")
-                        .append(Arrays.toString(questoes.clientesMenorSaldoAgencia(47))).append("\n")
+                        .append(questoes.clientesMenorSaldoAgencia(47)).append("\n")
                         .append("Q10: Quantos clientes estão na agência 47? \n")
                         .append(questoes.totalClienteAgencia(47)).append("\n")
                         .append("Q11: Quantos clientes que tem Maria no nome estão na agencia 47? \n")
-                        .append(questoes.clientesComecamNome("Maria")).append("\n");
+                        .append(questoes.clientesComecamNome("Maria",47)).append("\n");
 
-                System.out.println(builder.toString());
+
+                System.out.println(questoes.totalSaldoClienteAgencias());
+
+                System.out.println(questoes.clientesComecamNome("Maria", 47));
 
             }
 

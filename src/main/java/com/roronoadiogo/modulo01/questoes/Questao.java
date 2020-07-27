@@ -2,9 +2,9 @@ package com.roronoadiogo.modulo01.questoes;
 
 import com.roronoadiogo.modulo01.model.Conta;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 public class Questao {
 
@@ -46,21 +46,29 @@ public class Questao {
         return contaList.stream().filter(s -> s.getAgencia().equals(agencia)).count();
     }
 
-    public Long clientesComecamNome(String nome) {
-        return contaList.stream().filter(s -> s.getName().startsWith(nome)).count();
+    public Long clientesComecamNome(String nome, Integer agencia) {
+
+        return contaList.stream().filter(s->s.getAgencia().equals(agencia)).filter(s -> s.getName().contains(nome)).count();
+    }
+
+    public List<Conta> clientesMenorSaldoAgencia(Integer agencia) {
+
+        return contaList.stream().filter(s -> s.getAgencia().equals(agencia))
+                .sorted(Comparator.comparing(Conta::getBalance))
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
     //refazer
-    public String[] clientesMenorSaldoAgencia(Integer agencia) {
+    public Double totalSaldoClienteAgencias() {
 
-        return contaList.stream().filter(s -> s.getAgencia().equals(agencia)).min(Comparator.comparing(Conta::getBalance))
-                .stream().sorted(Comparator.comparing(Conta::getName)).map(Conta::getName).limit(2).toArray(String[]::new);
+        var total = 0.0;
 
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(10)).mapToDouble(Conta::getBalance).max().getAsDouble();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(33)).mapToDouble(Conta::getBalance).max().getAsDouble();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(47)).mapToDouble(Conta::getBalance).max().getAsDouble();
+        total+= contaList.stream().filter(s -> s.getAgencia().equals(25)).mapToDouble(Conta::getBalance).max().getAsDouble();
+
+        return total;
     }
-
-    //refazer
-    public Double somaSaldoClientesAgencia() {
-        return contaList.stream().filter(s-> s.getAgencia()!=null).mapToDouble(Conta::getBalance).sum();
-    }
-
 }
